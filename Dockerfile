@@ -45,11 +45,11 @@ RUN apk add --no-cache \
 COPY pip.conf /etc/pip.conf
 RUN pip3 install mautrix-telegram[all]==$version
 
+WORKDIR /opt/mautrix-telegram
 COPY docker-run.sh /opt/mautrix-telegram
 COPY example-config.yaml /opt/mautrix-telegram
 
 VOLUME /data
-ENV UID=1337 GID=1337 \
-    FFMPEG_BINARY=/usr/bin/ffmpeg
+ENV UID=1337 GID=1337 FFMPEG_BINARY=/usr/bin/ffmpeg
 
 CMD ["/opt/mautrix-telegram/docker-run.sh"]
