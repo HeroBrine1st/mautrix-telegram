@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM python:3.9-alpine3.15
 
 ARG version=0.11.2
 
