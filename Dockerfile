@@ -42,8 +42,9 @@ RUN apk add --no-cache \
       jq \
       yq
 
-COPY pip.conf /etc/pip.conf
-RUN pip3 install mautrix-telegram[all]==$version
+RUN apk add --virtual .build-deps python3-dev libffi-dev build-base \
+ && pip3 install mautrix-telegram[all]==$version \
+ && apk del .build-deps
 
 WORKDIR /opt/mautrix-telegram
 COPY docker-run.sh /opt/mautrix-telegram
@@ -51,5 +52,6 @@ COPY example-config.yaml /opt/mautrix-telegram
 
 VOLUME /data
 ENV UID=1337 GID=1337 FFMPEG_BINARY=/usr/bin/ffmpeg
+EXPOSE 29317
 
 CMD ["/opt/mautrix-telegram/docker-run.sh"]
