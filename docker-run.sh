@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Define functions.
-function fixperms {
+fixperms() {
 	chown -R $UID:$GID /data /opt/mautrix-telegram
 }
 
@@ -24,4 +24,4 @@ if [ ! -f /data/registration.yaml ]; then
 fi
 
 fixperms
-exec su-exec $UID:$GID python3 -m mautrix_telegram -c /data/config.yaml
+exec su -c "python3 -m mautrix_telegram -c /data/config.yaml" $UID:$GID
