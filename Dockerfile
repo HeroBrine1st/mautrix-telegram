@@ -1,10 +1,8 @@
-FROM python:3.9-alpine3.15
+FROM python:alpine
 
 ARG version=0.11.2
 
 RUN apk add --no-cache \
-      python3=~3.9 py3-pip py3-setuptools py3-wheel \
-      py3-virtualenv \
       py3-pillow \
       py3-aiohttp \
       py3-magic \
